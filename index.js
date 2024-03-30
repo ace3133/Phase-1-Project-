@@ -1,11 +1,4 @@
-fetch('http://localhost:3000/Coffee')
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-})
-.catch(error => {
-  console.error('Error fetching data:', error);
-});
+
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".image-container img");
   const selectedImageContainer = document.getElementById("selected-image-container");
