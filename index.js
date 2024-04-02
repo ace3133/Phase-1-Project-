@@ -1,5 +1,31 @@
 
 document.addEventListener("DOMContentLoaded", function () {
+  fetch("http://localhost:3000/Coffee")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(coffees => {
+      
+      const coffeeTypes = coffees.map(coffee => coffee.type);
+      
+      
+      const coffeeList = document.getElementById("Coffee");
+      coffeeTypes.forEach(coffee => {
+        const coffeeItem = document.createElement("p");
+        coffeeItem.textContent = coffee;
+        coffeeList.appendChild(coffeeItem);
+      });
+    })
+    .catch(error => {
+      console.error("Error fetching coffee data:", error);
+    });
+
+  
+  
+  
   const images = document.querySelectorAll(".image-container img");
   const selectedImageContainer = document.getElementById("selected-image-container");
   const coffeeDescriptions = {
@@ -33,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Display an alert with the coffee type
       alert(`How was your ${coffeeType}?`);
     });
+    
 
     // Hover event listener
     image.addEventListener("mouseover", function () {
@@ -54,3 +81,4 @@ document.addEventListener("DOMContentLoaded", function () {
       coffeeItem.textContent = coffee;
       coffeeList.appendChild(coffeeItem);
     });
+    
